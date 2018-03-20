@@ -3,28 +3,9 @@ package com.hmatalonga.greenhub.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.google.gson.JsonObject;
 import com.hmatalonga.greenhub.BuildConfig;
 import com.hmatalonga.greenhub.Config;
-import com.hmatalonga.greenhub.R;
-import com.hmatalonga.greenhub.events.StatusEvent;
-import com.hmatalonga.greenhub.models.Specifications;
-import com.hmatalonga.greenhub.models.data.Message;
-import com.hmatalonga.greenhub.network.services.GreenHubAPIService;
-import com.hmatalonga.greenhub.util.Notifier;
 import com.hmatalonga.greenhub.util.SettingsUtils;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
-
-import io.realm.Realm;
-import io.realm.exceptions.RealmPrimaryKeyConstraintException;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CheckNewMessagesTask extends AsyncTask<Context, Void, Void> {
 
@@ -35,7 +16,7 @@ public class CheckNewMessagesTask extends AsyncTask<Context, Void, Void> {
             url = Config.SERVER_URL_DEVELOPMENT;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
+       /* Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -98,7 +79,7 @@ public class CheckNewMessagesTask extends AsyncTask<Context, Void, Void> {
                         new StatusEvent(params[0].getString(R.string.event_server_not_responding))
                 );
             }
-        });
+        });*/
         return null;
     }
 }

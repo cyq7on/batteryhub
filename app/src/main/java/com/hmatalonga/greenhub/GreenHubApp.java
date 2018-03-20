@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.SystemClock;
-import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.hmatalonga.greenhub.managers.sampling.DataEstimator;
@@ -34,12 +33,10 @@ import com.hmatalonga.greenhub.tasks.DeleteUsagesTask;
 import com.hmatalonga.greenhub.util.LogUtils;
 import com.hmatalonga.greenhub.util.SettingsUtils;
 
+import cn.bmob.v3.Bmob;
 import io.fabric.sdk.android.Fabric;
-import io.realm.DynamicRealm;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmMigration;
-import io.realm.RealmSchema;
 
 import static com.hmatalonga.greenhub.util.LogUtils.LOGE;
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
@@ -60,9 +57,13 @@ public class GreenHubApp extends Application {
 
     private PendingIntent mNotificationIntent;
 
+    private String Bmob_AppId = "a663e7abd0be79a5109e5ecee31a01fc";
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        Bmob.initialize(this, Bmob_AppId);
 
         // If running debug mode, enable logs
         if (BuildConfig.DEBUG) {

@@ -19,24 +19,13 @@ package com.hmatalonga.greenhub.network.handlers;
 import android.content.Context;
 
 import com.google.gson.Gson;
-
-import org.greenrobot.eventbus.EventBus;
-
 import com.hmatalonga.greenhub.BuildConfig;
 import com.hmatalonga.greenhub.Config;
-import com.hmatalonga.greenhub.R;
-import com.hmatalonga.greenhub.events.StatusEvent;
 import com.hmatalonga.greenhub.models.Specifications;
 import com.hmatalonga.greenhub.models.data.Device;
 import com.hmatalonga.greenhub.network.services.GreenHubAPIService;
-import com.hmatalonga.greenhub.tasks.CheckNewMessagesTask;
 import com.hmatalonga.greenhub.util.GsonRealmBuilder;
 import com.hmatalonga.greenhub.util.SettingsUtils;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
@@ -62,11 +51,11 @@ public class RegisterDeviceHandler {
             url = Config.SERVER_URL_DEVELOPMENT;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-        mService = retrofit.create(GreenHubAPIService.class);
+        mService = retrofit.create(GreenHubAPIService.class);*/
     }
 
     public Device registerClient() {
@@ -87,7 +76,7 @@ public class RegisterDeviceHandler {
 
     private void callRegistration(Device device) {
         LOGI(TAG, "callRegistration()");
-        Call<Integer> call = mService.createDevice(device);
+        /*Call<Integer> call = mService.createDevice(device);
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -126,6 +115,6 @@ public class RegisterDeviceHandler {
                 );
                 LOGI(TAG, t.getMessage());
             }
-        });
+        });*/
     }
 }

@@ -16,15 +16,11 @@
 
 package com.hmatalonga.greenhub.network.services;
 
-import com.hmatalonga.greenhub.models.ServerStatus;
-import retrofit2.Call;
-import retrofit2.http.GET;
-
 /**
  * GreenHubStatusService.
  */
 
 public interface GreenHubStatusService {
-    @GET("status.json")
-    Call<ServerStatus> getStatus();
+   /* @GET("status.json")
+    Call<ServerStatus> getStatus();*/
 }

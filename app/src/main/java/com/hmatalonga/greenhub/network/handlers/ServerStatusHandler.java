@@ -18,16 +18,7 @@ package com.hmatalonga.greenhub.network.handlers;
 
 import android.content.Context;
 
-import com.hmatalonga.greenhub.Config;
-import com.hmatalonga.greenhub.models.ServerStatus;
 import com.hmatalonga.greenhub.network.services.GreenHubStatusService;
-import com.hmatalonga.greenhub.tasks.RegisterDeviceTask;
-import com.hmatalonga.greenhub.util.SettingsUtils;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
@@ -41,17 +32,17 @@ public class ServerStatusHandler {
     private GreenHubStatusService mService;
 
     public ServerStatusHandler() {
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Config.SERVER_STATUS_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        mService = retrofit.create(GreenHubStatusService.class);
+        mService = retrofit.create(GreenHubStatusService.class);*/
     }
 
     public void callGetStatus(final Context context) {
         LOGI(TAG, "callGetStatus()");
 
-        Call<ServerStatus> call = mService.getStatus();
+        /*Call<ServerStatus> call = mService.getStatus();
         call.enqueue(new Callback<ServerStatus>() {
             @Override
             public void onResponse(Call<ServerStatus> call, Response<ServerStatus> response) {
@@ -80,6 +71,6 @@ public class ServerStatusHandler {
             public void onFailure(Call<ServerStatus> call, Throwable t) {
                 t.printStackTrace();
             }
-        });
+        });*/
     }
 }

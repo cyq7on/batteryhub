@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">BatteryHub</string>
+    <string name="app_name">BatteryManager</string>
 
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>

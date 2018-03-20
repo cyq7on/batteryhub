@@ -21,11 +21,6 @@ import android.os.Handler;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.Iterator;
-
 import com.hmatalonga.greenhub.BuildConfig;
 import com.hmatalonga.greenhub.Config;
 import com.hmatalonga.greenhub.R;
@@ -42,12 +37,12 @@ import com.hmatalonga.greenhub.network.services.GreenHubAPIService;
 import com.hmatalonga.greenhub.tasks.DeleteSampleTask;
 import com.hmatalonga.greenhub.util.NetworkWatcher;
 import com.hmatalonga.greenhub.util.SettingsUtils;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.Iterator;
+
 import io.realm.Realm;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
@@ -88,11 +83,11 @@ public class CommunicationManager {
             url = Config.SERVER_URL_DEVELOPMENT;
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        mService = retrofit.create(GreenHubAPIService.class);
+        mService = retrofit.create(GreenHubAPIService.class);*/
     }
 
     public void sendSamples() {
@@ -140,7 +135,7 @@ public class CommunicationManager {
         final Upload upload = new Upload(bundleSample(sample));
         realm.close();
 
-        Call<Integer> call = mService.createSample(upload);
+        /*Call<Integer> call = mService.createSample(upload);
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -170,7 +165,7 @@ public class CommunicationManager {
                 isUploading = false;
                 refreshStatus();
             }
-        });
+        });*/
     }
 
     private void handleResponse(int response, int id) {

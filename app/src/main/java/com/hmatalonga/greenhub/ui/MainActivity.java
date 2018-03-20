@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,18 +46,22 @@ import com.hmatalonga.greenhub.events.RefreshChartEvent;
 import com.hmatalonga.greenhub.events.StatusEvent;
 import com.hmatalonga.greenhub.managers.sampling.DataEstimator;
 import com.hmatalonga.greenhub.managers.storage.GreenHubDb;
-import com.hmatalonga.greenhub.models.Specifications;
-import com.hmatalonga.greenhub.models.data.Device;
+import com.hmatalonga.greenhub.models.UserInfo;
 import com.hmatalonga.greenhub.network.CommunicationManager;
 import com.hmatalonga.greenhub.tasks.CheckNewMessagesTask;
 import com.hmatalonga.greenhub.tasks.ServerStatusTask;
 import com.hmatalonga.greenhub.ui.adapters.TabAdapter;
 import com.hmatalonga.greenhub.ui.layouts.MainTabLayout;
 import com.hmatalonga.greenhub.util.NetworkWatcher;
+import com.hmatalonga.greenhub.util.SPUtil;
 import com.hmatalonga.greenhub.util.SettingsUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+
+import static com.hmatalonga.greenhub.util.LogUtils.LOGE;
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
 
@@ -90,6 +93,24 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 mViewPager.setCurrentItem(tab);
             }
         }
+
+        register();
+    }
+
+    private void register() {
+        UserInfo userInfo = new UserInfo("test", "123test");
+        userInfo.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                    toast("注册成功");
+                    SPUtil.putAndApply(getApplicationContext(),"objectId",objectId);
+                } else {
+                    toast("注册失败");
+                    LOGE(TAG, e.getMessage());
+                }
+            }
+        });
     }
 
     @Override
@@ -139,19 +160,6 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                         .putContentType("Page visit")
                         .putContentId("page-settings"));
                 startActivity(new Intent(this, SettingsActivity.class));
-                return true;
-            case R.id.action_rating:
-                Answers.getInstance().logContentView(new ContentViewEvent()
-                        .putContentName("Enters Google Play Store to rate")
-                        .putContentType("Page visit")
-                        .putContentId("page-store"));
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=com.hmatalonga.greenhub")));
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://play.google.com/store/apps/details?id=com.hmatalonga.greenhub")));
-                }
                 return true;
         }
 
