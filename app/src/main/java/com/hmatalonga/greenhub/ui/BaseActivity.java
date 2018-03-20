@@ -16,12 +16,10 @@
 
 package com.hmatalonga.greenhub.ui;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -47,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
 
         // Check if the EULA has been accepted; if not, show it.
-        if (WelcomeActivity.shouldDisplay(this)) {
+       /* if (WelcomeActivity.shouldDisplay(this)) {
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
             finish();
@@ -60,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity implements
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
-        }
+        }*/
     }
 
     @Override

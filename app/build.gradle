@@ -69,6 +69,10 @@ android {
         abortOnError false
     }
     useLibrary 'org.apache.http.legacy'
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2016 Hugo Matalonga & João Paulo Fernandes
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +12,7 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  -->
-
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hmatalonga.greenhub">
 
@@ -29,26 +27,29 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <!-- Required for notifications -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <!-- The remaining permissions need to be accepted on run-time for Android devices >= 6.0 -->
 
+
     <!-- Required for IMEI / MEID for user differentiation. -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!-- Required for gps and location providers -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Required to get running apps -->
-    <!--<uses-permission android:name="android.permission.READ_CALL_LOG" />-->
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- Required to get running apps -->
+    <!-- <uses-permission android:name="android.permission.READ_CALL_LOG" /> -->
     <!-- Not used permissions for now -->
-    <!--<uses-permission android:name="android.permission.BATTERY_STATS"/>-->
+    <!-- <uses-permission android:name="android.permission.BATTERY_STATS"/> -->
     <!-- Required for WiFi settings on some phones. -->
-    <!--<uses-permission android:name="android.permission.BROADCAST_STICKY" />-->
+    <!-- <uses-permission android:name="android.permission.BROADCAST_STICKY" /> -->
     <!-- Required on some phones to check wifi signal strength. Should not be required. -->
-    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
-
+    <!-- <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> -->
     <application
         android:name=".GreenHubApp"
         android:allowBackup="true"
@@ -57,69 +58,67 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.GreenHub">
-
-        <meta-data android:name="AA_DB_NAME" android:value="GreenHub.db" />
-
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="GreenHub.db" />
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="6baa9b9338456a3fa0f937613e68af0ff37412c8"
-            />
+            android:value="6baa9b9338456a3fa0f937613e68af0ff37412c8" />
 
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/Theme.GreenHub.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.GreenHub.Main"/>
-
+            android:theme="@style/Theme.GreenHub.Main" />
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".ui.MainActivity"
             android:theme="@style/Theme.GreenHub.Main">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.TaskListActivity"
             android:label="@string/title_activity_process"
             android:parentActivityName=".ui.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.InboxActivity"
             android:label="@string/title_activity_inbox"
             android:parentActivityName=".ui.MainActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-
         <activity
             android:name=".ui.MessageActivity"
             android:parentActivityName=".ui.InboxActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.InboxActivity" />
         </activity>
-
         <activity
             android:name=".ui.WelcomeActivity"
             android:theme="@style/Theme.GreenHub.Welcome" />
@@ -128,27 +127,29 @@
             android:name=".managers.sampling.DataEstimatorService"
             android:label="BatteryEstimatorService" />
 
-        <receiver android:name=".receivers.ConnectivityReceiver">
+        <!--<receiver android:name=".receivers.ConnectivityReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
             </intent-filter>
-        </receiver>
-
+        </receiver>-->
         <receiver android:name=".receivers.PowerConnectionReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
-                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".receivers.BootReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".receivers.NotificationReceiver" />
 
-        <receiver android:name=".receivers.NotificationReceiver"/>
+        <activity
+            android:name=".ui.LoginActivity"
+            android:label="@string/title_activity_login">
+        </activity>
     </application>
 
 </manifest>

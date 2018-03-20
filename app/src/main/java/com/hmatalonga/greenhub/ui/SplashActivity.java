@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * Entry Point Activity with a splash screen logo.
  */
@@ -28,12 +30,28 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /*setContentView(R.layout.activity_splash);
+        getWindow().getDecorView().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                BmobUser bmobUser = BmobUser.getCurrentUser();
+                if(bmobUser != null){
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                }else{
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
+                finish();
+            }
+        },1200);*/
 
-        // Starts Main Activity and loading its contents
-        startActivity(new Intent(this, MainActivity.class));
-
-        // Finishes the current Splash Activity
+        BmobUser bmobUser = BmobUser.getCurrentUser();
+        if(bmobUser != null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }else{
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        }
         finish();
+
     }
 
 }

@@ -26,8 +26,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -35,7 +33,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.answers.ContentViewEvent;
@@ -46,22 +43,17 @@ import com.hmatalonga.greenhub.events.RefreshChartEvent;
 import com.hmatalonga.greenhub.events.StatusEvent;
 import com.hmatalonga.greenhub.managers.sampling.DataEstimator;
 import com.hmatalonga.greenhub.managers.storage.GreenHubDb;
-import com.hmatalonga.greenhub.models.UserInfo;
-import com.hmatalonga.greenhub.network.CommunicationManager;
 import com.hmatalonga.greenhub.tasks.CheckNewMessagesTask;
 import com.hmatalonga.greenhub.tasks.ServerStatusTask;
 import com.hmatalonga.greenhub.ui.adapters.TabAdapter;
 import com.hmatalonga.greenhub.ui.layouts.MainTabLayout;
 import com.hmatalonga.greenhub.util.NetworkWatcher;
-import com.hmatalonga.greenhub.util.SPUtil;
 import com.hmatalonga.greenhub.util.SettingsUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.BmobUser;
 
-import static com.hmatalonga.greenhub.util.LogUtils.LOGE;
 import static com.hmatalonga.greenhub.util.LogUtils.LOGI;
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
 
@@ -94,24 +86,9 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
             }
         }
 
-        register();
     }
 
-    private void register() {
-        UserInfo userInfo = new UserInfo("test", "123test");
-        userInfo.save(new SaveListener<String>() {
-            @Override
-            public void done(String objectId, BmobException e) {
-                if (e == null) {
-                    toast("注册成功");
-                    SPUtil.putAndApply(getApplicationContext(),"objectId",objectId);
-                } else {
-                    toast("注册失败");
-                    LOGE(TAG, e.getMessage());
-                }
-            }
-        });
-    }
+
 
     @Override
     protected void onStart() {
@@ -160,6 +137,11 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                         .putContentType("Page visit")
                         .putContentId("page-settings"));
                 startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_logout:
+                BmobUser.logOut();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
                 return true;
         }
 
@@ -223,7 +205,7 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
         MainTabLayout tabLayout = (MainTabLayout) findViewById(R.id.tab_layout);
         tabLayout.createTabs();
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabSendSample);
+       /* final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabSendSample);
         if (fab == null) return;
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +244,7 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                     refreshStatus();
                 }
             }
-        });
+        });*/
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -270,12 +252,12 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 mViewPager.setCurrentItem(tab.getPosition());
                 getActionBarToolbar().setTitle(tab.getContentDescription());
 
-                if (tab.getPosition() == TabAdapter.TAB_HOME) {
+                /*if (tab.getPosition() == TabAdapter.TAB_HOME) {
                     fab.show();
                 } else {
                     fab.hide();
                 }
-
+*/
                 if (tab.getPosition() == TabAdapter.TAB_CHARTS) {
                     EventBus.getDefault().post(new RefreshChartEvent());
                 }

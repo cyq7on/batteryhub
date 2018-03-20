@@ -35,6 +35,7 @@
     <string name="action_inbox">Inbox</string>
     <string name="action_summary">Summary</string>
     <string name="action_settings">Settings</string>
+    <string name="action_logout">logout</string>
     <string name="action_rating">Rate This App</string>
     <string name="action_24h">24h</string>
     <string name="action_3days">3 days</string>
@@ -74,7 +75,7 @@
     <string name="battery_health_dead">Dead</string>
     <string name="battery_health_over_voltage">Over Voltage</string>
     <string name="battery_health_failure">Unspecified Failure</string>
-    
+
     <!-- DeviceFragment -->
     <string name="device_summary_title">Summary</string>
     <string name="device_summary_id_label">BatteryHub ID</string>
@@ -257,4 +258,19 @@
 
     <!-- EULA Text -->
     <string name="eula_legal_text">Your use of this application is governed by:\n\na) GreenHub\'s Privacy Policy (https://goo.gl/m9hM3L).\n\nGreenHub\'s privacy policies may be updated from time to time. If we do, we will let you know by revising the date at the top of the policy.\n\nThis application collects certain information as you use it. GreenHub\'s Privacy Policy explains how GreenHub treats your information and protects your privacy when you use the application. By using the application, you agree to the use of your data in accordance with GreenHub\'s Privacy Policy.</string>
+    <string name="title_activity_login">Sign in or Register</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">UserName</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_login">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

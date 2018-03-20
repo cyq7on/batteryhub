@@ -28,8 +28,6 @@ import com.crashlytics.android.Crashlytics;
 import com.hmatalonga.greenhub.managers.sampling.DataEstimator;
 import com.hmatalonga.greenhub.managers.storage.GreenHubDbMigration;
 import com.hmatalonga.greenhub.receivers.NotificationReceiver;
-import com.hmatalonga.greenhub.tasks.DeleteSessionsTask;
-import com.hmatalonga.greenhub.tasks.DeleteUsagesTask;
 import com.hmatalonga.greenhub.util.LogUtils;
 import com.hmatalonga.greenhub.util.SettingsUtils;
 
@@ -86,7 +84,7 @@ public class GreenHubApp extends Application {
         LOGI(TAG, "Estimator new instance");
         estimator = new DataEstimator();
 
-        Context context = getApplicationContext();
+        /*Context context = getApplicationContext();
 
         if (SettingsUtils.isTosAccepted(context)) {
             // Start GreenHub Service
@@ -101,7 +99,7 @@ public class GreenHubApp extends Application {
             if (SettingsUtils.isPowerIndicatorShown(context)) {
                 startStatusBarUpdater();
             }
-        }
+        }*/
     }
 
     public void startGreenHubService() {
