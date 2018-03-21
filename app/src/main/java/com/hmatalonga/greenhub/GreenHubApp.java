@@ -57,11 +57,14 @@ public class GreenHubApp extends Application {
 
     private String Bmob_AppId = "a663e7abd0be79a5109e5ecee31a01fc";
 
+    private static Context context;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         Bmob.initialize(this, Bmob_AppId);
+        context = getApplicationContext();
 
         // If running debug mode, enable logs
         if (BuildConfig.DEBUG) {
@@ -162,5 +165,9 @@ public class GreenHubApp extends Application {
         if (mAlarmManager != null) {
             mAlarmManager.cancel(mNotificationIntent);
         }
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

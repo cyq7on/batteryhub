@@ -198,63 +198,62 @@
     <string name="notif_battery_cooldown">Cool-down your phone for a while</string>
 
     <!-- Strings related to SettingsInfo -->
-    <string name="pref_header_sampling">Sampling</string>
-    <string name="pref_header_upload">Uploads</string>
-    <string name="pref_header_notifications">Notifications</string>
-    <string name="pref_header_task_manager">Task Manager</string>
-    <string name="pref_header_about">About</string>
+    <string name="pref_header_sampling">采集</string>
+    <string name="pref_header_upload">上传</string>
+    <string name="pref_header_notifications">通知</string>
+    <string name="pref_header_task_manager">任务管理器</string>
+    <string name="pref_header_about">关于</string>
 
-    <string name="pref_title_sampling_screen">Track screen events</string>
-    <string name="pref_description_sampling_screen">Save data on screen on/off</string>
-    <string name="pref_title_old_measurement">Use old measurement method</string>
-    <string name="pref_description_old_measurement">Try this, if current now value is 0 all the time</string>
+    <string name="pref_title_sampling_screen">记录屏幕事件</string>
+    <string name="pref_description_sampling_screen">在屏幕亮/灭时保存数据</string>
+    <string name="pref_title_old_measurement">使用老的测量方法</string>
+    <string name="pref_description_old_measurement">如果一直为0，试试此操作</string>
 
-    <string name="pref_title_data_history">Data history</string>
+    <string name="pref_title_data_history">数据历史</string>
 
-    <string name="pref_title_auto_upload">Automatic uploads</string>
+    <string name="pref_title_auto_upload">自动上传</string>
 
-    <string name="pref_title_mobile_data">Use mobile data</string>
-    <string name="pref_description_mobile_data">Upload with cellular data</string>
+    <string name="pref_title_mobile_data">使用手机数据</string>
+    <string name="pref_description_mobile_data">上传元数据</string>
 
-    <string name="pref_title_upload_rate">Uploading rate</string>
+    <string name="pref_title_upload_rate">上传速度</string>
 
-    <string name="pref_title_power_indicator">Power indicator</string>
+    <string name="pref_title_power_indicator">电源指示</string>
 
-    <string name="pref_title_battery_alerts">Battery alerts</string>
-    <string name="pref_description_battery_alerts">Show charging and temperature alerts</string>
+    <string name="pref_title_battery_alerts">电池提示</string>
+    <string name="pref_description_battery_alerts">显示充电和温度提示</string>
 
-    <string name="pref_title_charge_alerts">Charging/Discharging alerts</string>
-    <string name="pref_description_charge_alerts">Show battery charge related alerts</string>
+    <string name="pref_title_charge_alerts">充电/断电提示</string>
+    <string name="pref_description_charge_alerts">显示电池充电的相关提示</string>
 
-    <string name="pref_title_temperature_alerts">Temperature alerts</string>
-    <string name="pref_description_temperature_alerts">Show battery temperature alerts</string>
+    <string name="pref_title_temperature_alerts">温度提示</string>
+    <string name="pref_description_temperature_alerts">显示电池温度提示</string>
 
-    <string name="pref_title_temperature_rate">Temperature alerts rate</string>
+    <string name="pref_title_temperature_rate">温度提示速度</string>
 
-    <string name="pref_title_temperature_warning">Temperature warning</string>
-    <string name="pref_description_temperature_warning">Degrees value of temperature warning</string>
+    <string name="pref_title_temperature_warning">温度警告</string>
+    <string name="pref_description_temperature_warning">温度警告值</string>
 
-    <string name="pref_title_temperature_high">Temperature high</string>
-    <string name="pref_description_temperature_high">Degrees value of temperature high</string>
+    <string name="pref_title_temperature_high">高温</string>
+    <string name="pref_description_temperature_high">高温值</string>
 
-    <string name="pref_title_message_alerts">New message alerts</string>
-    <string name="pref_description_message_alerts">Show incoming messages notifications</string>
+    <string name="pref_title_message_alerts">新消息提示</string>
+    <string name="pref_description_message_alerts">显示新消息提示</string>
 
-    <string name="pref_title_priority">Priority</string>
+    <string name="pref_title_priority">优先级</string>
 
-    <string name="pref_title_system_apps">Hide system apps</string>
+    <string name="pref_title_system_apps">隐藏系统应用</string>
 
-    <string name="pref_title_version">App Version</string>
+    <string name="pref_title_version">应用版本</string>
 
-    <string name="pref_title_device_id">BatteryHub ID</string>
+    <string name="pref_title_device_id">ID</string>
 
-    <string name="pref_title_rating">Rate this app</string>
+    <string name="pref_title_rating">为应用打分</string>
 
-    <string name="pref_title_privacy">Privacy Policy</string>
+    <string name="pref_title_privacy">隐私策略</string>
 
-    <string name="pref_title_help">Help</string>
-    <string name="pref_description_help">Se o botão de envio de dados não responder, por favor
-        encerre a aplicação e reinicie novamente.</string>
+    <string name="pref_title_help">帮助</string>
+    <string name="pref_description_help">如果提交按钮没有回应，请退出应用程序并重新启动.</string>
 
     <!-- EULA Text -->
     <string name="eula_legal_text">Your use of this application is governed by:\n\na) GreenHub\'s Privacy Policy (https://goo.gl/m9hM3L).\n\nGreenHub\'s privacy policies may be updated from time to time. If we do, we will let you know by revising the date at the top of the policy.\n\nThis application collects certain information as you use it. GreenHub\'s Privacy Policy explains how GreenHub treats your information and protects your privacy when you use the application. By using the application, you agree to the use of your data in accordance with GreenHub\'s Privacy Policy.</string>

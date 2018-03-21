@@ -152,13 +152,13 @@
             android:title="@string/pref_title_version"
             android:selectable="false" />
 
-        <Preference
+        <!--<Preference
             android:title="@string/pref_title_privacy">
 
             <intent android:action="android.intent.action.VIEW"
                 android:data="https://greenhubproject.org/privacy/" />
 
-        </Preference>
+        </Preference>-->
 
     </PreferenceCategory>
 

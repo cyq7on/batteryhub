@@ -25,6 +25,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.hmatalonga.greenhub.R;
+import com.hmatalonga.greenhub.models.BatteryInfo;
+import com.hmatalonga.greenhub.util.UploadUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +127,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 showProgress(false);
                 if (e == null) {
 //                    toast("注册成功");
+                    UploadUtils.createBatteryInfo(new BatteryInfo());
                     gotoMain();
                 } else {
                     mPasswordView.setError("注册失败");

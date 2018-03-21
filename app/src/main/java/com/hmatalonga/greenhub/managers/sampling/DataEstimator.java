@@ -26,8 +26,10 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 
 import com.hmatalonga.greenhub.R;
 import com.hmatalonga.greenhub.events.BatteryLevelEvent;
+import com.hmatalonga.greenhub.models.BatteryInfo;
 import com.hmatalonga.greenhub.util.Notifier;
 import com.hmatalonga.greenhub.util.SettingsUtils;
+import com.hmatalonga.greenhub.util.UploadUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -83,6 +85,18 @@ public class DataEstimator extends WakefulBroadcastReceiver {
                 technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
                 temperature = ((float) intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)) / 10;
                 voltage = ((float) intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)) / 1000;
+
+                BatteryInfo batteryInfo = new BatteryInfo();
+                batteryInfo.setLevel(level);
+                batteryInfo.setScale(scale);
+                batteryInfo.setHealth(mHealth);
+                batteryInfo.setPlugged(plugged);
+                batteryInfo.setPresent(present);
+                batteryInfo.setStatus(status);
+                batteryInfo.setTechnology(technology);
+                batteryInfo.setTemperature(temperature);
+                batteryInfo.setVoltage(voltage);
+                UploadUtils.uploadBatteryInfo(batteryInfo);
             }
             catch (RuntimeException e) {
                 e.printStackTrace();

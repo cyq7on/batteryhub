@@ -48,6 +48,7 @@ import com.hmatalonga.greenhub.tasks.ServerStatusTask;
 import com.hmatalonga.greenhub.ui.adapters.TabAdapter;
 import com.hmatalonga.greenhub.ui.layouts.MainTabLayout;
 import com.hmatalonga.greenhub.util.NetworkWatcher;
+import com.hmatalonga.greenhub.util.SPUtil;
 import com.hmatalonga.greenhub.util.SettingsUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -140,6 +141,7 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
                 return true;
             case R.id.action_logout:
                 BmobUser.logOut();
+                SPUtil.putAndApply(getApplicationContext(), "objectId", "");
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                 finish();
                 return true;
