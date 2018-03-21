@@ -32,14 +32,13 @@ import com.github.mikephil.charting.components.IMarker;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-
-import java.util.ArrayList;
-
 import com.hmatalonga.greenhub.R;
 import com.hmatalonga.greenhub.models.ui.ChartCard;
 import com.hmatalonga.greenhub.ui.views.ChartMarkerView;
 import com.hmatalonga.greenhub.util.DateUtils;
 import com.hmatalonga.greenhub.util.StringHelper;
+
+import java.util.ArrayList;
 
 /**
  * ChartRVAdapter.
@@ -116,31 +115,31 @@ public class ChartRVAdapter extends RecyclerView.Adapter<ChartRVAdapter.Dashboar
         if (card.extras != null) {
             String value;
             if (card.type == BATTERY_TEMPERATURE) {
-                value = "Min: " + StringHelper.formatNumber(card.extras[0]) + " ºC";
+                value = "最小: " + StringHelper.formatNumber(card.extras[0]) + " ºC";
                 holder.min.setText(value);
                 value = mContext.getString(R.string.chart_average_title) +
                         ": " + StringHelper.formatNumber(card.extras[1]) + " ºC";
                 holder.avg.setText(value);
-                value = "Max: " + StringHelper.formatNumber(card.extras[2]) + " ºC";
+                value = "最大: " + StringHelper.formatNumber(card.extras[2]) + " ºC";
                 holder.max.setText(value);
             } else if (card.type == BATTERY_VOLTAGE) {
-                value = "Min: " + StringHelper.formatNumber(card.extras[0]) + " V";
+                value = "最小: " + StringHelper.formatNumber(card.extras[0]) + " V";
                 holder.min.setText(value);
                 value = mContext.getString(R.string.chart_average_title) +
                         ": " + StringHelper.formatNumber(card.extras[1]) + " V";
                 holder.avg.setText(value);
-                value = "Max: " + StringHelper.formatNumber(card.extras[2]) + " V";
+                value = "最大: " + StringHelper.formatNumber(card.extras[2]) + " V";
                 holder.max.setText(value);
             }
             holder.extras.setVisibility(View.VISIBLE);
         }
 
         if (mInterval == DateUtils.INTERVAL_24H) {
-            holder.interval.setText("Last 24h");
+            holder.interval.setText("最近 24h");
         } else if (mInterval == DateUtils.INTERVAL_3DAYS) {
-            holder.interval.setText("Last 3 days");
+            holder.interval.setText("最近 3 days");
         } else if (mInterval == DateUtils.INTERVAL_5DAYS) {
-            holder.interval.setText("Last 5 days");
+            holder.interval.setText("最近 5 days");
         }
     }
 

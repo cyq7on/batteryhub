@@ -99,3 +99,6 @@ app/pepk.jar
 app/upload_certificate.pem
 app/greenhub-private-key.keystore
 app/greenhub-upload.jks
+
+*.mp4
+t.html

@@ -116,9 +116,9 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_inbox:
+            /*case R.id.action_inbox:
                 startActivity(new Intent(this, InboxActivity.class));
-                return true;
+                return true;*/
             case R.id.action_summary:
                 try {
                     Intent powerSummary = new Intent(Intent.ACTION_POWER_USAGE_SUMMARY);

@@ -31,12 +31,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-
 import com.hmatalonga.greenhub.Config;
 import com.hmatalonga.greenhub.R;
 import com.hmatalonga.greenhub.events.BatteryLevelEvent;
@@ -48,6 +42,12 @@ import com.hmatalonga.greenhub.models.Battery;
 import com.hmatalonga.greenhub.models.ui.BatteryCard;
 import com.hmatalonga.greenhub.ui.MainActivity;
 import com.hmatalonga.greenhub.ui.adapters.BatteryRVAdapter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
 
 import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
 
@@ -334,9 +334,9 @@ public class HomeFragment extends Fragment {
     private void resetBatteryCurrent() {
         mMin = Integer.MAX_VALUE;
         mMax = 0;
-        String value = "min: --";
+        String value = "最小: --";
         mBatteryCurrentMin.setText(value);
-        value = "max: --";
+        value = "最大: --";
         mBatteryCurrentMax.setText(value);
         value = getString(R.string.battery_measure);
         mBatteryCurrentNow.setText(value);
@@ -351,9 +351,9 @@ public class HomeFragment extends Fragment {
 
             // If is charging and full battery stop runnable
             if (!mActivePower.equals("unplugged") && level == 1.0) {
-                value = "min: --";
+                value = "最小: --";
                 mBatteryCurrentMin.setText(value);
-                value = "max: --";
+                value = "最大: --";
                 mBatteryCurrentMax.setText(value);
                 value = mContext.getString(R.string.battery_full);
                 mBatteryCurrentNow.setText(value);
@@ -363,13 +363,13 @@ public class HomeFragment extends Fragment {
 
             if (Math.abs(now) < Math.abs(mMin)) {
                 mMin = now;
-                value = "min: " + mMin + " mA";
+                value = "最小: " + mMin + " mA";
                 mBatteryCurrentMin.setText(value);
             }
 
             if (Math.abs(now) > Math.abs(mMax)) {
                 mMax = now;
-                value = "max: " + mMax + " mA";
+                value = "最大: " + mMax + " mA";
                 mBatteryCurrentMax.setText(value);
             }
 
