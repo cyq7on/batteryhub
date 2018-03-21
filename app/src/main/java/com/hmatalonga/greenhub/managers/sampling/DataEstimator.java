@@ -24,6 +24,7 @@ import android.content.ReceiverCallNotAllowedException;
 import android.os.BatteryManager;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
+import com.hmatalonga.greenhub.GreenHubApp;
 import com.hmatalonga.greenhub.R;
 import com.hmatalonga.greenhub.events.BatteryLevelEvent;
 import com.hmatalonga.greenhub.models.BatteryInfo;
@@ -41,7 +42,7 @@ import static com.hmatalonga.greenhub.util.LogUtils.makeLogTag;
 
 /**
  * Provides current Device data readings.
- *
+ * <p>
  * Created by hugo on 09-04-2016.
  */
 public class DataEstimator extends WakefulBroadcastReceiver {
@@ -59,6 +60,8 @@ public class DataEstimator extends WakefulBroadcastReceiver {
     private String technology;
     private float temperature;
     private float voltage;
+    private static long startMillis = System.currentTimeMillis();
+    private int uploadRate;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -85,20 +88,26 @@ public class DataEstimator extends WakefulBroadcastReceiver {
                 technology = intent.getExtras().getString(BatteryManager.EXTRA_TECHNOLOGY);
                 temperature = ((float) intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0)) / 10;
                 voltage = ((float) intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0)) / 1000;
-
-                BatteryInfo batteryInfo = new BatteryInfo();
-                batteryInfo.setLevel(level);
-                batteryInfo.setScale(scale);
-                batteryInfo.setHealth(mHealth);
-                batteryInfo.setPlugged(plugged);
-                batteryInfo.setPresent(present);
-                batteryInfo.setStatus(status);
-                batteryInfo.setTechnology(technology);
-                batteryInfo.setTemperature(temperature);
-                batteryInfo.setVoltage(voltage);
-                UploadUtils.uploadBatteryInfo(batteryInfo);
-            }
-            catch (RuntimeException e) {
+                long currentTimeMillis = System.currentTimeMillis();
+                int minutes = (int) ((currentTimeMillis - startMillis) / (1000 * 60));
+                uploadRate = SettingsUtils.fetchUploadRate(GreenHubApp.getContext());
+                LOGI(TAG, "current minutes is " + minutes + " while uploadRate is " + uploadRate);
+                if (minutes >= uploadRate) {
+                    startMillis = currentTimeMillis;
+                    BatteryInfo batteryInfo = new BatteryInfo();
+                    batteryInfo.setLevel(level);
+                    batteryInfo.setScale(scale);
+                    batteryInfo.setHealth(mHealth);
+                    batteryInfo.setPlugged(plugged);
+                    batteryInfo.setPresent(present);
+                    batteryInfo.setStatus(status);
+                    batteryInfo.setTechnology(technology);
+                    batteryInfo.setTemperature(temperature);
+                    batteryInfo.setVoltage(voltage);
+                    UploadUtils.uploadBatteryInfo(batteryInfo);
+                    LOGI(TAG, minutes + "upload batteryInfo");
+                }
+            } catch (RuntimeException e) {
                 e.printStackTrace();
             }
 
@@ -171,6 +180,7 @@ public class DataEstimator extends WakefulBroadcastReceiver {
             startWakefulService(context, service);
         }
     }
+
 
     public static Intent getBatteryChangedIntent(final Context context) {
         return context.registerReceiver(
